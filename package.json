@@ -17,7 +17,6 @@
     "commander": "^2.9.0",
     "minimatch": "^3.0.0",
     "rc": "^1.1.6",
-    "run-parallel": "^1.1.4",
-    "run-series": "^1.1.4"
+    "run-parallel": "^1.1.4"
   }
 }
