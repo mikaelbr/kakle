@@ -1,0 +1,10 @@
+#!/bin/sh
+bin=$(pwd)/node_modules/.bin/kakle
+file=$(pwd)/.kaklerc
+
+if [ ! -f "${bin}" ]; then
+  $bin exec $file
+fi
+if [ -f "${bin}" ]; then
+  kakle exec $file
+fi

@@ -1,0 +1,23 @@
+{
+  "name": "kakle",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "bin": {
+    "kakle": "bin/kakle.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Mikael Brevik",
+  "license": "ISC",
+  "dependencies": {
+    "cli-prompt": "^0.4.3",
+    "commander": "^2.9.0",
+    "minimatch": "^3.0.0",
+    "rc": "^1.1.6",
+    "run-parallel": "^1.1.4",
+    "run-series": "^1.1.4"
+  }
+}
