@@ -8,7 +8,7 @@ const path = require('path');
 var manifestFile;
 
 program
-  .arguments('<manifest>')
+  .arguments('<manifest-file>')
   .action(function (manifest) {
     if (!manifest) {
       console.error(chalk.red('No manifest file passed as input'));

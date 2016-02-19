@@ -7,7 +7,7 @@ const allowedTypes = ['tag', 'regex', 'glob'];
 var type;
 
 program
-  .arguments('[type]')
+  .arguments('[' + allowedTypes.join('|') + ']')
   .action(function (inputType) { type = inputType; })
   .parse(process.argv);
 

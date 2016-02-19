@@ -1,6 +1,6 @@
 const hooks = require('../lib/manifest-file');
+const inquirer = require('inquirer');
 const program = require('commander');
-const prompt = require('cli-prompt');
 const chalk = require('chalk');
 
 const allowedTypes = ['tag', 'regex', 'glob'];
@@ -26,12 +26,12 @@ if (typeof type === 'undefined') {
 }
 
 function promptType () {
-  prompt.multi([
+  inquirer.prompt([
     {
-      key: 'type',
-      label: 'type (tag, regex or glob)',
-      required: true,
-      'default': 'tag',
+      type: 'input',
+      name: 'type',
+      message: 'type (tag, regex or glob)',
+      default: 'tag',
       validate: validateType
     }
   ], askForItem);
@@ -40,35 +40,36 @@ function promptType () {
 function askForItem (val) {
   var questions = [
     {
-      key: val.type || type,
-      label: val.type || type,
-      required: true,
-      'default': 'install',
+      type: 'input',
+      name: val.type || type,
+      message: val.type || type,
+      default: 'install',
       validate: validateLength
     },
 
     {
-      key: 'command',
-      required: true,
-      'default': 'npm install',
+      type: 'input',
+      name: 'command',
+      message: 'command',
+      default: 'npm install',
       validate: validateLength
     },
 
     {
-      key: 'autorun',
-      label: 'should run automatically',
-      'default': 'yes',
-      type: 'boolean'
+      type: 'confirm',
+      name: 'autorun',
+      message: 'should run automatically',
+      default: true
     }
   ];
 
-  prompt.multi(questions, function (item) {
+  inquirer.prompt(questions, function (item) {
     console.log('\n' + chalk.yellow(JSON.stringify(item, null, 2)) + '\n');
-    prompt.multi([{
-      key: 'ok',
-      label: 'does this look good?',
-      'default': 'yes',
-      type: 'boolean'
+    inquirer.prompt([{
+      type: 'confirm',
+      name: 'ok',
+      message: 'Does this look good?',
+      default: true
     }], function (confirm) {
       if (!confirm.ok) return;
       hooks.add(item, function (err, data) {
@@ -86,14 +87,16 @@ function askForItem (val) {
 
 function validateLength (val) {
   if (val.length < 2) {
-    throw new Error(chalk.red('Should be more than 2 characters'));
+    return chalk.red('Should be more than 2 characters');
   }
+  return true;
 }
 
 function validateType (val) {
   if (allowedTypes.indexOf(val) === -1) {
-    throw new Error(chalk.red(
-      '» Type not found (' + chalk.yellow(val) + '). Try one of ('
-      + chalk.yellow(allowedTypes.join(', ')) + ')'));
+    return chalk.red(
+      'Type not found (' + chalk.yellow(val) + '). Try one of ('
+      + chalk.yellow(allowedTypes.join(', ')) + ')');
   }
+  return true;
 }

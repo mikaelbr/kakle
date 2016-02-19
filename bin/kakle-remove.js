@@ -9,7 +9,7 @@ const allowedTypes = ['tag', 'regex', 'glob'];
 var type;
 
 program
-  .arguments('[type]')
+  .arguments('[' + allowedTypes.join('|')+ ']')
   .action(function (inputType) { type = inputType; })
   .parse(process.argv);
 
@@ -36,12 +36,11 @@ if (typeof type === 'undefined') {
 }
 
 function promptType () {
-  prompt.multi([
+  inquirer.multi([
     {
-      key: 'type',
-      label: 'type (tag, regex or glob)',
-      required: true,
-      'default': 'tag',
+      name: 'type',
+      message: 'type (tag, regex or glob)',
+      default: 'tag',
       validate: validateType
     }
   ], askForItem);
@@ -51,14 +50,13 @@ function askForItem (val) {
   var itemType = val.type || type;
   var questions = [
     {
-      key: itemType,
-      label: itemType,
-      required: true,
+      name: itemType,
+      message: itemType,
       validate: validateLength
     }
   ];
 
-  prompt.multi(questions,
+  inquirer.prompt(questions,
       removeList.bind(null, itemType));
 }
 
@@ -77,11 +75,11 @@ function removeList (itemType, item) {
     console.log(chalk.blue('\nRemove these items:'));
     print.list(items);
 
-    prompt.multi([{
-      key: 'ok',
-      label: 'does this look good?',
-      'default': 'yes',
-      type: 'boolean'
+    inquirer.prompt([{
+      name: 'ok',
+      message: 'does this look good?',
+      default: true,
+      type: 'confirm'
     }], remove.bind(null, itemType, item));
   });
 }
@@ -113,14 +111,16 @@ function removeIndex (index) {
 
 function validateLength (val) {
   if (val.length < 2) {
-    throw new Error(chalk.red('Should be more than 2 characters'));
+    return chalk.red('Should be more than 2 characters');
   }
+  return true;
 }
 
 function validateType (val) {
   if (allowedTypes.indexOf(val) === -1) {
-    throw new Error(chalk.red(
-      '» Type not found (' + chalk.yellow(val) + '). Try one of ('
-      + chalk.yellow(allowedTypes.join(', ')) + ')'));
+    return chalk.red(
+      'Type not found (' + chalk.yellow(val) + '). Try one of ('
+      + chalk.yellow(allowedTypes.join(', ')) + ')');
   }
+  return true;
 }

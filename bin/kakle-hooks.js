@@ -10,7 +10,7 @@ const allowedCommands = [
 var inputCommand;
 
 program
-  .arguments('<command>')
+  .arguments('<' + allowedCommands.join('|') + '>')
   .action(function (command) {
     inputCommand = command;
   })
