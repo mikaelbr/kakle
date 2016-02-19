@@ -1,8 +1,9 @@
-const program = require('commander');
-const path = require('path');
-const git = require('../lib/git');
 const hooks = require('../lib/manifest-file');
+const program = require('commander');
 const exec = require('../lib/exec');
+const git = require('../lib/git');
+const chalk = require('chalk');
+const path = require('path');
 
 var manifestFile;
 
@@ -10,7 +11,7 @@ program
   .arguments('<manifest>')
   .action(function (manifest) {
     if (!manifest) {
-      console.error('No manifest file passed as input');
+      console.error(chalk.red('No manifest file passed as input'));
       return process.exit(1);
     }
     manifestFile = manifest;
@@ -19,10 +20,10 @@ program
 
 exec(manifestFile, function (err, data) {
   if (err) {
-    console.error(err.message);
+    console.error(chalk.red(err.message));
     return process.exit(1);
   }
   data.forEach(function (str) {
-    console.log(str.join('\n'));
+    console.log(chalk.blue(str.join('\n')));
   });
 });

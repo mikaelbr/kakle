@@ -1,6 +1,7 @@
+const hooks = require('../lib/manifest-file');
 const program = require('commander');
 const prompt = require('cli-prompt');
-const hooks = require('../lib/manifest-file');
+const chalk = require('chalk');
 
 const allowedTypes = ['tag', 'regex', 'glob'];
 var type;
@@ -19,7 +20,7 @@ if (typeof type === 'undefined') {
     validateType(type);
     askForItem(type);
   } catch (e) {
-    console.error(e.message);
+    console.error(chalk.red(e.message));
     promptType();
   }
 }
@@ -31,12 +32,7 @@ function promptType () {
       label: 'type (tag, regex or glob)',
       required: true,
       'default': 'tag',
-      validate: function (val) {
-        if (allowedTypes.indexOf(val) === -1) {
-          throw new Error('Type not found (' + val + '). Try one of '
-            + allowedTypes.join(', '));
-        }
-      }
+      validate: validateType
     }
   ], askForItem);
 }
@@ -48,22 +44,14 @@ function askForItem (val) {
       label: val.type || type,
       required: true,
       'default': 'install',
-      validate: function (val) {
-        if (val.length < 3) {
-          throw new Error('Should be more than 2 characters');
-        }
-      }
+      validate: validateLength
     },
 
     {
       key: 'command',
       required: true,
       'default': 'npm install',
-      validate: function (val) {
-        if (val.length < 2) {
-          throw new Error('Should be more than 2 characters');
-        }
-      }
+      validate: validateLength
     },
 
     {
@@ -75,7 +63,7 @@ function askForItem (val) {
   ];
 
   prompt.multi(questions, function (item) {
-    console.log('\n' + JSON.stringify(item, null, 2) + '\n');
+    console.log('\n' + chalk.yellow(JSON.stringify(item, null, 2)) + '\n');
     prompt.multi([{
       key: 'ok',
       label: 'does this look good?',
@@ -88,7 +76,7 @@ function askForItem (val) {
           console.error(err.message);
           process.exit(1);
         } else {
-          console.log('Added new hook');
+          console.log(chalk.green('√ Added new hook'));
           process.exit(0);
         }
       });
@@ -96,9 +84,16 @@ function askForItem (val) {
   });
 }
 
+function validateLength (val) {
+  if (val.length < 2) {
+    throw new Error(chalk.red('Should be more than 2 characters'));
+  }
+}
+
 function validateType (val) {
   if (allowedTypes.indexOf(val) === -1) {
-    throw new Error('Type not found (' + val + '). Try one of '
-      + allowedTypes.join(', '));
+    throw new Error(chalk.red(
+      '» Type not found (' + chalk.yellow(val) + '). Try one of ('
+      + chalk.yellow(allowedTypes.join(', ')) + ')'));
   }
 }
