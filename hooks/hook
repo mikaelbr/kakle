@@ -1,6 +1,5 @@
 #/usr/bin/env bash
 
-echo "dsa"
 bin=$(pwd)/node_modules/.bin/kakle
 file=$(pwd)/.kaklerc
 
