@@ -26,15 +26,13 @@ if (typeof type === 'undefined') {
 }
 
 function promptType () {
-  inquirer.prompt([
-    {
-      type: 'input',
-      name: 'type',
-      message: 'type (tag, regex or glob)',
-      default: 'tag',
-      validate: validateType
-    }
-  ], askForItem);
+  inquirer.prompt([{
+    type: 'input',
+    name: 'type',
+    message: 'type (tag, regex or glob)',
+    default: 'tag',
+    validate: validateType
+  }], askForItem);
 }
 
 function askForItem (val) {

@@ -20,6 +20,7 @@ if (typeof type !== 'undefined' &&
   process.exit(1);
 }
 
+console.log(chalk.blue('» Listing kakle hooks:'))
 hooks.list(type, function (err, data) {
   if (err) {
     console.error(chalk.red(err.message));
