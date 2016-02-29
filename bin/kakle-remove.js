@@ -3,7 +3,6 @@ const print = require('../lib/print');
 const inquirer = require('inquirer');
 const program = require('commander');
 const docs = require('../lib/docs');
-const prompt = require('cli-prompt');
 const chalk = require('chalk');
 
 const allowedTypes = ['tag', 'regex', 'glob'];
