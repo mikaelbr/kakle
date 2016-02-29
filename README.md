@@ -55,22 +55,34 @@ npm i https://dl.dropboxusercontent.com/u/2361994/npm/kakle-1.0.2.tgz
 ```
 ⇝ kakle -h
 
-  Usage: kakle [options] [command]
+Usage: kakle [options] <sub-task>
 
 
-  Commands:
+Commands:
 
-    hooks <command>  manage git hooks
-    exec <manifest>  execute kakle on manifestfile
-    add [type]       Add tags, regexes and/or globs
-    remove [type]    Add tags, regexes and/or globs
-    list [type]      List different hooks
-    help [cmd]       display help for [cmd]
+  hooks <command>     activate, deactivate or show current status of git hooks in a repo
+  exec <manifest>     execute kakle on manifestfile (mostly used by hooks)
+  add [hook-type]     Add tags, regexes and/or globs
+  remove [hook-type]  Remove tags, regexes and/or globs
+  list [hook-type]    List different tags, regexes and/or globs
+  help [cmd]          display help for [cmd]
 
-  Options:
+# Kakle
+When working on big or small teams, there comes a time when one of your team
+members adds a frontend dependency, adds code that requires database migration,
+or just adds a patch that simply requires you to run a command. kakle does
+exactly this. If some file is changed, run a command. If a commit message
+contains a tag, run a command. If you don't want to automatically run commands,
+you can just get a reminder that you should do it your self. kakle can be
+summarized as If Commit, Then That.
 
-    -h, --help     output usage information
-    -V, --version  output the version number
+
+
+Options:
+
+  -h, --help     output usage information
+  -V, --version  output the version number
+
 ```
 
 # Examples
