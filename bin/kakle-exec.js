@@ -1,13 +1,17 @@
 const hooks = require('../lib/manifest-file');
 const program = require('commander');
 const exec = require('../lib/exec');
+const docs = require('../lib/docs');
 const git = require('../lib/git');
 const chalk = require('chalk');
 const path = require('path');
 
 var manifestFile;
 
+program._name = 'kakle exec'
+
 program
+  .description(docs.exec())
   .arguments('<manifest-file>')
   .action(function (manifest) {
     if (!manifest) {

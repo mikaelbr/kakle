@@ -1,5 +1,6 @@
 const hooks = require('../lib/hooks');
 const program = require('commander');
+const docs = require('../lib/docs');
 const chalk = require('chalk');
 const allowedCommands = [
   'activate',
@@ -9,7 +10,10 @@ const allowedCommands = [
 
 var inputCommand;
 
+program._name = 'kakle hooks'
+
 program
+  .description(docs.hooks())
   .arguments('<' + allowedCommands.join('|') + '>')
   .action(function (command) {
     inputCommand = command;

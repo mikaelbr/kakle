@@ -1,13 +1,17 @@
 const hooks = require('../lib/manifest-file');
 const inquirer = require('inquirer');
 const program = require('commander');
+const docs = require('../lib/docs');
 const chalk = require('chalk');
 
 const allowedTypes = ['tag', 'regex', 'glob'];
 var type;
 
+program._name = 'kakle add'
+
 program
-  .arguments('[type]')
+  .description(docs.add())
+  .arguments('[' + allowedTypes.join('|')+ ']')
   .action(function (inputType) {
     type = inputType;
   })
