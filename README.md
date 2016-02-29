@@ -47,7 +47,7 @@ See other commands by doing `kakle help` or help on a specific topic by doing `k
 ## Install private version:
 
 ```shell
-npm i https://dl.dropboxusercontent.com/u/2361994/npm/kakle-1.0.1.tgz
+npm i https://dl.dropboxusercontent.com/u/2361994/npm/kakle-1.0.2.tgz
 ```
 
 # Usage
