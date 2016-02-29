@@ -4,6 +4,12 @@
 
 Config file to hook up commands reacting to commits.
 
+Install private version:
+
+```shell
+npm i https://dl.dropboxusercontent.com/u/2361994/npm/kakle-1.0.1.tgz
+```
+
 # Usage
 
 ```
