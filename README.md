@@ -2,9 +2,47 @@
 
 > If Commit Then That
 
-Config file to hook up commands reacting to commits.
+When working on big or small teams, there comes a time when one of your team members adds a frontend dependency, adds code that requires database migration, or just adds a patch that simply requires you to run a command. `kakle` does exactly this. If some file is changed, run a command. If a commit message contains a tag, run a command. If you don't want to automatically run commands, you can just get a reminder that you should do it your self. `kakle` can be summarized as `If Commit, Then That`.
 
-Install private version:
+## Example Usage
+
+`kakle` uses a local config file (`.kaklerc`) in your repo which you can use to add hooks for commits. Or you can use the CLI to add interactively:
+
+```shell
+⇝ kakle add
+? type (tag, regex or glob) tag
+? tag run
+? command curl http://localhost:3000
+? should run automatically Yes
+
+{
+  "tag": "run",
+  "command": "curl http://localhost:3000",
+  "autorun": true
+}
+
+? Does this look good? Yes
+√ Added new hook
+```
+
+This adds a `tag hook` to your git messages, and when you merge in or rebase in a new commit with the text `[run]` in the message, the command `curl http://localhost:3000` will automatically run – given that you have activated the kakle hooks. You can check this by doing:
+
+```shell
+⇝ kakle hooks status
+Hooks not yet activated.
+Run `kakle hooks activate` to activate hooks.
+```
+
+and activate it by doing:
+
+```
+⇝ kakle hooks activate
+Activated hooks
+```
+
+See other commands by doing `kakle help` or help on a specific topic by doing `kakle help <topic>` (e.g. `kakle help hooks`).
+
+## Install private version:
 
 ```shell
 npm i https://dl.dropboxusercontent.com/u/2361994/npm/kakle-1.0.1.tgz
