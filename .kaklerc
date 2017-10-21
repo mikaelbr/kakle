@@ -1,0 +1,9 @@
+{
+  "hooks": [
+    {
+      "glob": "package.json",
+      "command": "npm install",
+      "autorun": true
+    }
+  ]
+}
