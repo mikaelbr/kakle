@@ -18,7 +18,7 @@ program
 if (typeof type !== 'undefined' &&
   allowedTypes.indexOf(type) === -1) {
   console.error(chalk.red(
-    '» Type not found (' + chalk.yellow(val) + '). Try one of ('
+    '» Type not found (' + chalk.yellow(type) + '). Try one of ('
      + chalk.yellow(allowedTypes.join(', ')) + ')'
   ));
   process.exit(1);
