@@ -6,6 +6,6 @@ file=$(pwd)/.kaklerc
 if [ ! -f "${bin}" ]; then
   $bin exec $file
 fi
-if [ -f "${bin}" ]; then
+elif [ -f "${bin}" ]; then
   kakle exec $file
 fi
