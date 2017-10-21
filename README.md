@@ -2,13 +2,15 @@
 
 > If Commit Then That
 
-When working on big or small teams, there comes a time when one of your team members adds a frontend dependency, adds code that requires database migration, or just adds a patch that requires you to run a command. `kakle` does exactly this for you. If a file is changed or a commit message contains a tag; run a command. If you don't want to automatically run commands, you can just get a reminder that you should do it your self. `kakle` can be summarized as `If Commit, Then That`.
+Think of this tool as `If Commit, Then Do`. When working on big or small teams, there comes a time when one of your team members adds a patch that requires you to run a command. For instance adding a dependency to `package.json`, which would require you to know to run `npm install`. `kakle` takes care of that for you based on a shared configuration of criteria and commands for every `pull` or `fetch`.
+
+![Kakle example output](./kakle-example.gif)
 
 See more documentation in the [docs](./docs)
 
-## Example Usage
+## Example Setup
 
-`kakle` uses a local config file (`.kaklerc`) in your repo which you can use to add hooks for commits. Or you can use the CLI to add interactively:
+`kakle` uses a local config file (`.kaklerc`) in your repo which you can use to add hooks for commits (this should in most cases be shared on your team). Or you can use the CLI to add interactively:
 
 ```shell
 ⇝ kakle add
