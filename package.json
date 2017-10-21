@@ -11,7 +11,7 @@
   },
   "keywords": [],
   "author": "Mikael Brevik",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^1.1.1",
     "commander": "^2.9.0",
