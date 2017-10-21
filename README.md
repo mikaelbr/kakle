@@ -12,14 +12,14 @@ See more documentation in the [docs](./docs)
 
 ```shell
 ⇝ kakle add
-? type (tag, regex or glob) tag
-? tag run
-? command curl http://localhost:3000
+? type (tag, regex or glob) glob
+? glob package.json
+? command npm install
 ? should run automatically Yes
 
 {
-  "tag": "run",
-  "command": "curl http://localhost:3000",
+  "glob": "package.json",
+  "command": "npm install",
   "autorun": true
 }
 
@@ -43,12 +43,6 @@ Activated hooks
 ```
 
 See other commands by doing `kakle help` or help on a specific topic by doing `kakle help <topic>` (e.g. `kakle help hooks`).
-
-## Install private version:
-
-```shell
-npm i https://dl.dropboxusercontent.com/u/2361994/npm/kakle-1.0.2.tgz
-```
 
 # Usage
 
@@ -75,8 +69,6 @@ exactly this. If some file is changed, run a command. If a commit message
 contains a tag, run a command. If you don't want to automatically run commands,
 you can just get a reminder that you should do it your self. kakle can be
 summarized as If Commit, Then That.
-
-
 
 Options:
 
