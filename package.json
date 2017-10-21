@@ -1,7 +1,7 @@
 {
   "name": "kakle",
   "version": "1.0.0-beta",
-  "description": "",
+  "description": "Run commands when some file change when pulling remote git changes.",
   "main": "index.js",
   "bin": {
     "kakle": "bin/kakle.js"
