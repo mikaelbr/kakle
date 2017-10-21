@@ -1,4 +1,4 @@
-# kakle [![npm](https://img.shields.io/npm/v/kakle/beta.svg?style=flat-square)]()
+# kakle [![npm](https://img.shields.io/npm/v/kakle/beta.svg?style=flat-square)](https://www.npmjs.com/package/kakle)
 
 > If Commit Then That
 
