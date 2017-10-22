@@ -1,10 +1,10 @@
 # kakle [![npm](https://img.shields.io/npm/v/kakle/beta.svg?style=flat-square)](https://www.npmjs.com/package/kakle)
 
+![Kakle example output](./kakle-example.gif)
+
 > If Commit Then That
 
 Think of this tool as `If Commit, Then Do`. When working on big or small teams, there comes a time when one of your team members adds a patch that requires you to run a command. For instance adding a dependency to `package.json`, which would require you to know to run `npm install`. `kakle` takes care of that for you based on a shared configuration of criteria and commands for every `pull` or `fetch`.
-
-![Kakle example output](./kakle-example.gif)
 
 See more documentation in the [docs](./docs)
 
